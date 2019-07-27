@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>Topics</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:700&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -52,7 +54,10 @@
       for (x = 0; x < response.data.length; x++) {
         console.log(response.data[x])
         var rating = $('<p>').text("Rating: " + response.data[x].rating);
-        var img = $("<img>").attr('src', response.data[x].images.fixed_height_still.url);
+        var img = $("<img>")
+        img.attr('src', response.data[x].images.downsized_still.url);
+        img.attr('data-moving', response.data[x].images.downsized_medium.url);
+        img.attr('data-static', response.data[x].images.downsized_still.url);
         var d = $('<div>').append(rating, img);
         $("#gifs").prepend(img,rating)
       }
@@ -68,14 +73,16 @@
     });
 
 
-    // $("img").on("click", function(){
-    //   var s = $(this).attr('data-state');
-    //   if(s=='still'){
-    //     $(this).attr('data-state', 'animated');
-    //   }else{
-    //     $(this).attr('data-state', 'still');
-    //   }
-    // })
+    $(document).on("click","img" ,function(){
+    var actualSrc= $(this).attr("src");
+    var movingD=$(this).attr("data-moving");
+    var staticD=$(this).attr("data-static");
+    if (staticD==actualSrc){
+      $(this).attr('src', movingD);
+    }else{
+      $(this).attr('src', staticD)
+    }
+    })
     </script>
     </div>
 </body>
