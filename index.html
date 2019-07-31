@@ -47,7 +47,7 @@
 //when user click on button with show it will call ajax and return 10 results with ratings
   $(document).on("click", ".bTopics", function() {
     var tName = $(this).text();
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + tName + "&api_key=j3efJCig105rvgYvwwxy5qVwJFvyzN4j&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + tName + "&api_key=j3efJCig105rvgYvwwxy5qVwJFvyzN4j&limit=10";
     $.ajax({
     url: queryURL,
     method: 'GET'
@@ -88,10 +88,7 @@
       $(this).attr('src', staticD)
     }
     })
-    $(document).on("click",".downloadButton",function(){
-      var href = $('img').attr('href');
- window.location.href = href;
-    } )
+  
     </script>
     </div>
 </body>
